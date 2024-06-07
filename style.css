@@ -1,0 +1,11 @@
+.toolbar button {
+    margin-right: 5px;
+  }
+  
+  .editor {
+    border: 1px solid #ddd;
+    padding: 10px;
+    min-height: 300px;
+    background-color: #fff;
+  }
+  

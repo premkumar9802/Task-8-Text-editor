@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ask Questions</title>
+  <style>
+    .toolbar {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .toolbar button {
+      margin-right: 5px;
+    }
+    .editor {
+      border: 1px solid #ddd;
+      padding: 10px;
+      min-height: 300px;
+      background-color: #fff;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ask a Question</h2>
+  <div class="toolbar">
+    <button onclick="execCmd('bold')">Bold</button>
+    <button onclick="execCmd('italic')">Italic</button>
+    <button onclick="execCmd('underline')">Underline</button>
+    <button onclick="execCmd('insertUnorderedList')">Bullet List</button>
+    <button onclick="execCmd('insertOrderedList')">Numbered List</button>
+    <button onclick="execCmd('createLink', prompt('Enter URL:', 'http://'))">Link</button>
+    <button onclick="insertCode()">Insert Code</button>
+    <button onclick="insertVideo()">Insert Video</button>
+  </div>
+  <div id="editor" class="editor" contenteditable="true"></div>
+  <button onclick="submitQuestion()">Submit</button>
+  <script>
+    function execCmd(command, value = null) {
+      document.execCommand(command, false, value);
+    }
+
+    function insertCode() {
+      const code = prompt("Enter code:");
+      if (code) {
+        const pre = document.createElement("pre");
+        pre.textContent = code;
+        document.getElementById("editor").appendChild(pre);
+      }
+    }
+
+    function insertVideo() {
+      const url = prompt("Enter video URL:");
+      if (url) {
+        const video = document.createElement("iframe");
+        video.src = url;
+        video.width = "560";
+        video.height = "315";
+        document.getElementById("editor").appendChild(video);
+      }
+    }
+
+    function submitQuestion() {
+      const content = document.getElementById("editor").innerHTML;
+      console.log(content);
+    }
+  </script>
+</body>
+</html>
